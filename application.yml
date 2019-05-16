@@ -1,0 +1,5 @@
+
+spring:
+  application:
+    name: cardService #部署2 个相同的服务，名字要一样
+               
