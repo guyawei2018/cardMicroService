@@ -1,0 +1,30 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cardService-zuul
+  cloud:
+    gateway:
+      routes:
+      - id: CARDSERVICECONSUME
+        uri: lb://CARDSERVICECONSUME
+        predicates:
+        - path=/lanswon/**  
+       
+eureka:
+  client: #客户端注册进eureka服务列表内
+    serviceUrl: 
+       defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/      
+  instance:
+    instance-id: cardService-zuul-9527
+    prefer-ip-address: true     #访问路径可以显示IP地址       
+
+#zuul: 
+#  #prefix: /lanswon  # 地址加上前缀
+#  ignored-services: "*" # 所有微服务忽略
+#  routes: #可以配置多个  
+#    zuula.serviceId: CARDSERVICECONSUME
+#    zuula.path: /zuula/**  
+ 
+    

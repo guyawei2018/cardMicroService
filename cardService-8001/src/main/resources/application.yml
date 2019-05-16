@@ -1,0 +1,32 @@
+server:
+  port: 8001
+
+#spring:
+#  application:
+#    name: cardService #部署2个相同的服务，名字要一样
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    serviceUrl: 
+      #defaultZone: http://localhost:7001/eureka
+       defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/      
+  instance:
+    instance-id: microservicecloud-8001
+    prefer-ip-address: true     #访问路径可以显示IP地址          
+    
+# actuator 服务监控   info 在注册中心点击服务超链接显示内容，不显示Error Page,和父工程pom文件<bulid>一起使用
+info: 
+  app.name: cardService
+  company.name: lanswon
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+#开放所有页面节点  默认只开启了health、info两个节点  
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - path=/*
+        
+        

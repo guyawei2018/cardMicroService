@@ -1,0 +1,20 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cardServiceConsume
+     
+#使用rabbion必须要配置eureka，消费端访问服务端要经过rabbion负载均衡
+eureka:
+  client:
+    #register-with-eureka: false
+    serviceUrl: 
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/  
+
+
+#feign中是用hystrix      
+feign: 
+  hystrix: 
+    enabled: true
+      
